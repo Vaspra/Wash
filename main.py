@@ -19,6 +19,7 @@ class Run():
         pygame.display.set_caption(cfg_disp['caption'])
         
         self.obj_list = []
+        self.input_memory_dict = cfg_input.copy()
         self.exit = False
         self.gameLoop()
         pygame.quit()
@@ -28,10 +29,15 @@ class Run():
         while not self.exit:
             self.check_events()
             self.apply_input()
+            self.assign_input_memory()
             for obj in self.obj_list:
                 obj.update_physics()
             self.update_display()
             self.clock.tick(120)
+            
+            
+            
+            
             
         
     def check_events(self):
@@ -74,11 +80,15 @@ class Run():
             for obj in self.obj_list:
                 obj.y_force -= 0.001
                 
-        if cfg_input[pygame.K_SPACE]:
+        if cfg_input[pygame.K_SPACE] and not self.input_memory_dict[pygame.K_SPACE]:
             self.obj_list.clear()
             print('Clearing object list')
             
-
+            
+    def assign_input_memory(self):
+        for key in self.input_memory_dict.keys():
+            self.input_memory_dict[key] = cfg_input[key]
+            
         
     def update_display(self):
         # Fill background
