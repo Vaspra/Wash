@@ -8,9 +8,10 @@ Created on Mon Feb  5 10:11:48 2018
 from config import cfg_walls
 
 class Particle():
-    def __init__(self, points:list, obj_list:list):
+    def __init__(self, points:list, obj_list:list, Run_instance):
         self.points = points
         self.obj_list = obj_list
+        self.Run_instance = Run_instance
         
         self.x_speed = 0
         self.x_accel = 0

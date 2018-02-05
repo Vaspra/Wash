@@ -61,7 +61,7 @@ class Run():
                     
     def apply_input(self):
         if cfg_input['mouse_0'] == True:
-            new_obj = Particle( [(cfg_input['mouse_x'], cfg_input['mouse_y'])], self.obj_list)
+            new_obj = Particle( [(cfg_input['mouse_x'], cfg_input['mouse_y'])], self.obj_list, self)
             self.obj_list.append(new_obj)
             
         if cfg_input[pygame.K_RIGHT]:
